@@ -20,9 +20,22 @@ namespace nctcaugbatch.Controllers
 
         public IActionResult Index()
         {
+            int a = 5;
+            int b = 6;
+
+            int sum = a + b;
+                ViewBag.sum = sum;
+
             return View();
         }
+        public JsonResult Sum(string Number1, string Number2)
+        {
 
+            
+                int sum1 = Int32.Parse(Number1) + Int32.Parse(Number2);
+
+            return Json(sum1);
+        }
         public IActionResult Privacy()
         {
             return View();
