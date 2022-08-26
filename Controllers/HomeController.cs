@@ -12,21 +12,17 @@ namespace nctcaugbatch.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IEmployee context;
+        public HomeController(ILogger<HomeController> logger, IEmployee _context)
         {
             _logger = logger;
+            context = _context;
         }
 
         public IActionResult Index()
         {
-            int a = 5;
-            int b = 6;
-
-            int sum = a + b;
-                ViewBag.sum = sum;
-
-            return View();
+            var model = context.GetEmployeeList();
+            return View(model);
         }
         public JsonResult Sum(string Number1, string Number2)
         {

@@ -1,40 +1,29 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model List<nctcaugbatch.Models.EmployeeDetail>
+<table border="1" width="400">
+    <thead>
+        <tr class="btn-primary">
+            <th> ID</th>
+            <th> Name</th>
+            <th> Designation</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model)
+        {
+            <tr>
+                <td>@emp.Id</td>
+                <td>@emp.Name</td>
+                <td>@emp.Designation</td>
+            </tr>
+        }
+    </tbody>
+</table>
 
 <div class="text-center">
-    <h1 class="display-4">Welcome to nctc august batch</h1>
-    <p>sum= @ViewBag.sum</p>
-    <label>Enter First Number:</label>
-    <input type="text" id="txt_firstnumber"><br>
-    <label>Enter Second Number:</label>
-    <input type="text" id="txt_secondnumber"><br>
-    <p id="serversidesum"></p>
-    <button onclick="Sum()">Sum</button>
+
 </div>
-<script>
-    function Sum() {
-        var number1 = document.getElementById("txt_firstnumber").value;
-        var number2 = document.getElementById("txt_secondnumber").value;
 
-        $.ajax({
-            url: '/Home/Sum',
-            data: {
-                Number1: number1,
-                Number2: number2
-
-            },
-            async: false,
-            cache: false,
-            type: "POST",
-            traditional: true,
-            success: function (data) {
-                alert("sum from server "+data);
-            },
-            error: function (reponse) {
-                $("#genericLoader").modal("hide");
-
-            }
-        });
-    }
-</script>
